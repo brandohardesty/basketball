@@ -42,6 +42,9 @@ public class Main {
 		File f = new File("F.csv");
 		ArrayList<Player> guards = readData(g);
 		ArrayList<Player> fowards = readData(f);
+		ArrayList<Player> trainingData = new ArrayList<Player>();
+		trainingData.addAll(guards);
+		trainingData.addAll(fowards);
 		System.out.println("hey");
 		System.out.println(guards.size());
 	}
