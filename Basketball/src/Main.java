@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	public ArrayList<Player> readData(File file) {
+	public static ArrayList<Player> readData(File file) {
 		ArrayList<Player> players = new ArrayList<Player>();
 		ArrayList<String> lines = new ArrayList<String>();
 		String pos = "";
@@ -38,7 +38,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		File g = new File("G.csv");
+		File f = new File("F.csv");
+		ArrayList<Player> guards = readData(g);
+		ArrayList<Player> fowards = readData(f);
+		System.out.println("hey");
+		System.out.println(guards.size());
 	}
 
 }
