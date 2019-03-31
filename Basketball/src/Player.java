@@ -32,7 +32,7 @@ public class Player {
 	public double getDistance(Player p) {
 		double sum = 0;
 		for(int i = 0; i<stats.length; i++) {
-			sum += Math.pow((stats[i] + p.getStats()[i]), 2);
+			sum += Math.pow((stats[i] - p.getStats()[i]), 2);
 		}
 		return Math.sqrt(sum);
 	}
