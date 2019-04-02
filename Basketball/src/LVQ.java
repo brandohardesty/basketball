@@ -29,6 +29,9 @@ public class LVQ {
 		}
 		
 	}
+	public ArrayList<Player> getTestData(){
+		return this.testData;
+	}
 	public ArrayList<Player> normalize(ArrayList<Player> data) {
 		
 		for(Player p:data) {
@@ -56,9 +59,9 @@ public class LVQ {
 		}
 		return data;
 	}
-	public void unNormalize() {
+	public void unNormalize(ArrayList<Player> data) {
 		double x = 0;
-		for(Player p:codeBookVects) {
+		for(Player p:data) {
 			for(int i = 0; i<p.getStats().length-2;i++) {
 				x = (p.getStats()[i]*(max[i]-min[i])) + min[i];
 				p.setStats(i, x);

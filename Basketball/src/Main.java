@@ -49,7 +49,7 @@ public class Main {
 		trainingData.addAll(fowards);
 		double[] idealG = {.6,.5,.78,.345};
 		double[] idealF = {.6,.5,.72,.3};
-		double[] zion = {20,10,.64,.238};
+		double[] zion = {27.3,10.5,.646,.338};
 		Player zionW = new Player(zion,"F");
 		Player idealGuard = new Player(idealG,"G");
 		Player idealFoward = new Player(idealF,"F");
@@ -68,23 +68,20 @@ public class Main {
 		System.out.println(p1.getDistance(p2));
 		LVQ model = new LVQ(trainingData,codeBook,test);
 		model.train(.7,200);
-//		for(int i = 0; i<p1.getStats().length;i++) {
-//			System.out.println(model.getCodeBook().get(1).getStats()[i]);
-//		}
-//		System.out.println();
-//		for(int i = 0; i<p1.getStats().length;i++) {
-//			System.out.println(model.getCodeBook().get(0).getStats()[i]);
-//		}
-//		System.out.println();
-//		for(int i = 0; i<p1.getStats().length;i++) {
-//			System.out.println(zionW.getStats()[i]);
-//		}
-//		System.out.println("Dist \n");
-//		System.out.println(zionW.getDistance(model.getCodeBook().get(0)));
-//		System.out.println(zionW.getDistance(model.getCodeBook().get(1)));
-//		System.out.println(zionW.getDistance(zionW));
-//	
-		model.unNormalize();
+		model.train(.3, 200);
+		model.train(.1, 20000);
+
+		System.out.println();
+		System.out.println(model.classify(zionW));
+		
+		System.out.println("\n\n");
+		
+	
+		model.unNormalize(model.getCodeBook());
+		model.unNormalize(model.getTestData());
+		for(int i = 0; i<p1.getStats().length;i++) {
+			System.out.println(zionW.getStats()[i]);
+		}
 		
 		for(int i = 0; i<p1.getStats().length;i++) {
 			System.out.println(model.getCodeBook().get(1).getStats()[i]);
