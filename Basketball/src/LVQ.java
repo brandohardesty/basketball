@@ -81,7 +81,7 @@ public class LVQ {
 			
 
 			learningRate = alpha*(1-((double) epoch/(double) maxEpoch));
-			System.out.println((double) epoch/(double) maxEpoch);
+//			System.out.println((double) epoch/(double) maxEpoch);
 
 			for(Player p:trainingData) {
 				Player currentCBV = p.getClosest(codeBookVects);
@@ -91,7 +91,7 @@ public class LVQ {
 					currentCBV.changeFT(learningRate*(p.getStats()[2] - currentCBV.getStats()[2]));
 					currentCBV.change3pt(learningRate*(p.getStats()[3] - currentCBV.getStats()[3]));
 					
-					System.out.println(learningRate*(p.getStats()[0] - currentCBV.getStats()[0]) + " "+ p.getStats()[0] + " "+currentCBV.getStats()[0]);
+//					System.out.println(learningRate*(p.getStats()[0] - currentCBV.getStats()[0]) + " "+ p.getStats()[0] + " "+currentCBV.getStats()[0]);
 				} else {
 					currentCBV.changePPG(-1*(learningRate*(p.getStats()[0] - currentCBV.getStats()[0])));
 					

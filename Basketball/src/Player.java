@@ -78,4 +78,29 @@ public class Player {
 		}
 		return closestPlayer;
 	}
+
+	public ArrayList <Player> getAllClosest(ArrayList<Player> players) {
+		ArrayList<Player> pCopy = new ArrayList<Player>();
+		pCopy.addAll(players);
+		ArrayList <Player> allTheClosest = new ArrayList <Player> ();
+
+		for(int i = 0; i<4; i++) {
+			double min = getDistance(pCopy.get(0));
+
+			Player closestPlayer = pCopy.get(0);
+			
+			
+			for(Player p: pCopy) {
+				if(getDistance(p) < min) {
+					min = getDistance(p);
+					closestPlayer = p;
+					
+				}
+			}
+			allTheClosest.add(closestPlayer);
+			pCopy.remove(closestPlayer);
+		}
+
+		return allTheClosest;
+	}
 }

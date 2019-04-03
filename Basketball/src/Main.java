@@ -50,49 +50,70 @@ public class Main {
 		double[] idealG = {.6,.5,.78,.345};
 		double[] idealF = {.6,.5,.72,.3};
 		double[] zion = {27.3,10.5,.646,.338};
+		double[] ja = {24.1,5.6,.813,.363};
+		double[] cam = {20.3,6.9,.818,.457};
+		double[] rj = {20.3,8.7,.726,.335};
 		Player zionW = new Player(zion,"F");
+		Player jaM = new Player(ja,"G");
+		Player camJ = new Player(cam, "F");
+		Player rjB = new Player(rj, "G");
 		Player idealGuard = new Player(idealG,"G");
 		Player idealFoward = new Player(idealF,"F");
 		ArrayList<Player> codeBook = new ArrayList<Player>();
 		ArrayList<Player> test = new ArrayList<Player>();
 		test.add(zionW);
+		test.add(jaM);
+		test.add(camJ);
+		test.add(rjB);
 		codeBook.add(idealGuard);
 		codeBook.add(idealFoward);
-		System.out.println("hey");
-		System.out.println();
-		double[] test1 = {.7,.4,.5,.2};
-		double[] test2 = {.7,.5,.5,.2};
-		Player p1 = new Player(test1,"G");
-		Player p2 = new Player(test2,"F");
-		
-		System.out.println(p1.getDistance(p2));
+//		System.out.println();
 		LVQ model = new LVQ(trainingData,codeBook,test);
-		model.train(.7,200);
-		model.train(.3, 200);
-		model.train(.1, 20000);
+		model.train(.7,2000);
+		model.train(.3, 2000);
 
 		System.out.println();
 		System.out.println(model.classify(zionW));
+		System.out.println(model.classify(jaM));
+		System.out.println(model.classify(camJ));
+		System.out.println(model.classify(rjB));
 		
 		System.out.println("\n\n");
 		
 	
 		model.unNormalize(model.getCodeBook());
 		model.unNormalize(model.getTestData());
-		for(int i = 0; i<p1.getStats().length;i++) {
+		for(int i = 0; i<zionW.getStats().length;i++) {
 			System.out.println(zionW.getStats()[i]);
 		}
 		
-		for(int i = 0; i<p1.getStats().length;i++) {
+		for(int i = 0; i<zionW.getStats().length;i++) {
 			System.out.println(model.getCodeBook().get(1).getStats()[i]);
 		}
 		System.out.println();
-		for(int i = 0; i<p1.getStats().length;i++) {
+		for(int i = 0; i<zionW.getStats().length;i++) {
 			System.out.println(model.getCodeBook().get(0).getStats()[i]);
 		}
 		
 		
-		
+		/*
+		 * ANYTHING BELOW IS JUST FOR SPICY ***DO NOT EDIT ABOVE PLEASE***
+		 */
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		ArrayList <Player> testData = new ArrayList <Player>();
+		double[] nassir = {21.5,10.1,.77,.269};
+		Player nassirL = new Player(nassir,"F");
+		testData.add(nassirL);
+		KsNearestNeighbor KNN = new KsNearestNeighbor(trainingData,testData);		
+		ArrayList <Player> close = KNN.ClosestPlayers(nassirL);
+		KNN.unNormalize(KNN.getNormalized());
+		for (Player p:close) {
+			System.out.println(p.getPos() + "\n\n");
+			for(int i = 0; i<p.getStats().length;i++) {
+				System.out.println(p.getStats()[i]);
+			}
+			System.out.println("\n\n");
+		}
 	}
 
 }
