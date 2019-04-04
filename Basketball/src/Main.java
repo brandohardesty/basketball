@@ -91,6 +91,21 @@ public class Main {
 			System.out.println(model.getCodeBook().get(0).getStats()[i]);
 		}
 		
+		//Test Brute Force
+		ArrayList<Player> guardData = readData(g);
+		ArrayList<Player> fowardData = readData(f);
+		BruteForce bfRun = new BruteForce();
+		ArrayList<double[]> forwardStats= new ArrayList<double[]>();
+		ArrayList<double[]> guardStats= new ArrayList<double[]>();
+		for (int i=0; i<20; i++) {
+			forwardStats.add(fowardData.get(i).getStats());
+			guardStats.add(guardData.get(i).getStats());
+		}
+		System.out.println(Arrays.toString(forwardStats.get(1)));
+		
+		double [] testPlayer = new double[] {17.5, 5.7, .722, .272};
+		System.out.println("Running brute force");
+		System.out.println(bfRun.bruteForceClassification(forwardStats, guardStats, testPlayer));
 		
 		
 	}
