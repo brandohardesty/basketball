@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Timer;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -160,18 +161,25 @@ public class Main {
 			double[] inputStats = new double[] {ppgInput, rpgInput, ftpInput, ttpInput};
 			Player inputPlayer = new Player (inputStats, positionInput);
 		}
-		
 		System.out.println("Running Brute Force Algorithm");
+		long bfStartTime = System.nanoTime();
 		String bfResult = bf.bruteForceClassification(forwardStats, guardStats, inputPlayer.getStats());
-		System.out.println("Brute Force classified this player as a "+ bfResult);
+		long bfEndTime = System.nanoTime();
+		System.out.println("Brute Force classified this player as a "+ bfResult+ "in "+ ((bfStartTime+bfEndTime)/1000000) + " milliseconds" );
 		
 		System.out.println("Running K's Nearest Neighbor Algorithm");
+		long kStartTime = System.nanoTime();
 		//Run K's
-		System.out.println("K's Nearest Neighbor classified this player as a "+ kResult);
+		long kEndTime = System.nanoTime();
+		System.out.println("K's Nearest Neighbor classified this player as a "+ kResult+ "in "+ ((kStartTime+kEndTime)/1000000) + " milliseconds" );
 		
 		System.out.println("Running Linear Vector Quantization Algorithm");
+		long lvqStartTime = System.nanoTime();
 		//RunLVQ
-		System.out.println("Linear Vector Quantization classified this player as a "+ lvqResult);
+		long lvqEndTime = System.nanoTime();
+		System.out.println("Linear Vector Quantization classified this player as a "+ lvqResult+ "in "+ ((lvqStartTime+lvqEndTime)/1000000) + " milliseconds" );
+		
+		
 		
 	}
 
